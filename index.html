@@ -1,30 +1,272 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Algocubic | Under Construction</title>
-  <style>
-    body {
-      background: #0f0f0f;
-      color: #ffffff;
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      text-align: center;
-    }
-    h1 { font-size: 42px; }
-    p { color: #cccccc; }
-  </style>
-</head>
-<body>
-  <div>
-    <h1>AlgoCubic</h1>
-    <p>🚧 Website under construction</p>
-    <p>We’re building something powerful.</p>
-    <p></p>
-  </div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AlgoCubic</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: radial-gradient(circle at top, #0f172a, #020617);
+        color: #fff;
+        overflow-x: hidden;
+      }
+
+      canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: -1;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 60px;
+        position: fixed;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(10px);
+        z-index: 100;
+      }
+
+      .logo {
+        font-size: 26px;
+        font-weight: 700;
+        background: linear-gradient(90deg, #00d4ff, #7c3aed);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      nav a {
+        margin-left: 30px;
+        text-decoration: none;
+        color: #ccc;
+        transition: 0.3s;
+      }
+
+      nav a:hover {
+        color: #fff;
+      }
+
+      .hero {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 0 20px;
+      }
+
+      .hero h1 {
+        font-size: 56px;
+        max-width: 900px;
+        background: linear-gradient(90deg, #ffffff, #00d4ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .hero p {
+        margin-top: 20px;
+        font-size: 20px;
+        color: #94a3b8;
+        max-width: 600px;
+      }
+
+      .cta {
+        margin-top: 30px;
+        padding: 14px 30px;
+        border-radius: 30px;
+        border: none;
+        font-weight: 600;
+        cursor: pointer;
+        background: linear-gradient(90deg, #00d4ff, #7c3aed);
+        color: #fff;
+        transition: 0.3s;
+      }
+
+      .cta:hover {
+        transform: scale(1.05);
+      }
+
+      .section {
+        padding: 100px 60px;
+        text-align: center;
+      }
+
+      .section h2 {
+        font-size: 36px;
+        margin-bottom: 40px;
+      }
+
+      .cards {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+      }
+
+      .card {
+        width: 280px;
+        padding: 30px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        transition: 0.3s;
+      }
+
+      .card:hover {
+        transform: translateY(-10px) scale(1.03);
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .product {
+        max-width: 900px;
+        margin: auto;
+        background: rgba(255, 255, 255, 0.04);
+        padding: 40px;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+      }
+
+      footer {
+        text-align: center;
+        padding: 40px;
+        color: #94a3b8;
+      }
+
+      .fade {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 1s ease;
+      }
+
+      .fade.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="bg"></canvas>
+
+    <header>
+      <div class="logo">AlgoCubic</div>
+      <nav>
+        <a href="whatwedo.html">What We Do</a>
+        <a href="products.html">Products</a>
+        <a href="careers.html">Careers</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <h1>Engineering Digital Excellence with AI</h1>
+      <p>
+        We build intelligent, scalable and AI-powered digital products that
+        transform businesses.
+      </p>
+      <button class="cta">Get Started</button>
+    </section>
+
+    <section class="section fade">
+      <h2>What We Deliver</h2>
+      <div class="cards">
+        <div class="card">AI-powered web applications</div>
+        <div class="card">High-performance engineering teams</div>
+        <div class="card">End-to-end product development</div>
+      </div>
+    </section>
+
+    <section class="section fade">
+      <h2>Our Product</h2>
+      <div class="product">
+        <h3>AI Sales Email & Follow-up Writer</h3>
+        <p style="margin-top: 15px; color: #94a3b8">
+          Generate high-converting sales emails, smart follow-ups, and optimized
+          subject lines using AI. Built for founders, sales teams, and modern
+          businesses.
+        </p>
+      </div>
+    </section>
+
+    <section class="section fade">
+      <h2>Why AlgoCubic</h2>
+      <div class="cards">
+        <div class="card">Built for scalability and speed</div>
+        <div class="card">AI-first engineering mindset</div>
+        <div class="card">Focused on real business impact</div>
+      </div>
+    </section>
+
+    <section class="section fade">
+      <h2>Contact</h2>
+      <p>contact@algocubic.com</p>
+    </section>
+
+    <footer>© 2026 AlgoCubic Pvt Ltd</footer>
+
+    <script>
+      // scroll animation
+      const fades = document.querySelectorAll(".fade");
+      window.addEventListener("scroll", () => {
+        fades.forEach((el) => {
+          const top = el.getBoundingClientRect().top;
+          if (top < window.innerHeight - 100) {
+            el.classList.add("show");
+          }
+        });
+      });
+
+      // animated background
+      const canvas = document.getElementById("bg");
+      const ctx = canvas.getContext("2d");
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      let particles = [];
+
+      for (let i = 0; i < 80; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 0.5,
+          vy: (Math.random() - 0.5) * 0.5,
+        });
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        particles.forEach((p) => {
+          p.x += p.vx;
+          p.y += p.vy;
+
+          if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+          if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+          ctx.fillStyle = "#00d4ff";
+          ctx.fill();
+        });
+
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+    </script>
+  </body>
 </html>
