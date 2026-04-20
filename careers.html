@@ -1,29 +1,407 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Careers - AlgoCubic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
     <style>
+      :root {
+        --cyan: #00d4ff;
+        --violet: #7c3aed;
+        --dark: #020617;
+      }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+
       body {
-        background: #020617;
-        color: white;
-        font-family: Inter, sans-serif;
-        padding: 60px;
+        font-family: 'DM Sans', sans-serif;
+        background: var(--dark);
+        color: #fff;
+        overflow-x: hidden;
+        min-height: 100vh;
+      }
+
+      .bg-scene {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden;
+      }
+      .bg-scene::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(ellipse 80% 60% at 20% 10%, rgba(0,212,255,0.18) 0%, transparent 60%),
+          radial-gradient(ellipse 60% 70% at 80% 80%, rgba(124,58,237,0.22) 0%, transparent 60%),
+          radial-gradient(ellipse 50% 50% at 50% 50%, rgba(15,23,42,0.95) 0%, #020617 100%);
+        animation: bgPulse 8s ease-in-out infinite alternate;
+      }
+      @keyframes bgPulse { 0% { opacity:1; } 100% { opacity:0.7; } }
+
+      .bg-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(0,212,255,0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0,212,255,0.04) 1px, transparent 1px);
+        background-size: 60px 60px;
+      }
+
+      .orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        animation: orbFloat linear infinite;
+      }
+      .orb1 { width:500px; height:500px; background:rgba(0,212,255,0.08); top:-100px; left:-100px; animation-duration:20s; }
+      .orb2 { width:400px; height:400px; background:rgba(124,58,237,0.10); bottom:-80px; right:-80px; animation-duration:25s; animation-direction:reverse; }
+      .orb3 { width:300px; height:300px; background:rgba(0,212,255,0.06); top:40%; left:60%; animation-duration:18s; }
+      @keyframes orbFloat {
+        0%   { transform:translate(0,0) scale(1); }
+        33%  { transform:translate(40px,-30px) scale(1.05); }
+        66%  { transform:translate(-20px,40px) scale(0.97); }
+        100% { transform:translate(0,0) scale(1); }
+      }
+
+      header {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 100;
+        padding: 20px 60px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: rgba(2,6,23,0.5);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid rgba(0,212,255,0.08);
+      }
+      .logo {
+        font-family: 'Syne', sans-serif;
+        font-size: 26px;
+        font-weight: 800;
+        background: linear-gradient(90deg, #00d4ff, #7c3aed);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-decoration: none;
+      }
+      nav a {
+        margin-left: 30px;
+        text-decoration: none;
+        color: #94a3b8;
+        font-size: 14px;
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+      nav a:hover, nav a.active { color: #00d4ff; }
+
+      .page-wrapper {
+        position: relative;
+        z-index: 1;
+        padding: 140px 60px 80px;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .label {
+        display: inline-block;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: #00d4ff;
+        border: 1px solid rgba(0,212,255,0.3);
+        padding: 6px 16px;
+        border-radius: 30px;
+        margin-bottom: 28px;
+        opacity: 0;
+        animation: fadeUp 0.6s 0.2s forwards;
       }
       h1 {
+        font-family: 'Syne', sans-serif;
+        font-size: clamp(36px, 5vw, 58px);
+        font-weight: 800;
+        line-height: 1.12;
+        background: linear-gradient(120deg, #ffffff 30%, #00d4ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 20px;
+        opacity: 0;
+        animation: fadeUp 0.6s 0.35s forwards;
+      }
+      .intro {
+        font-size: 17px;
+        color: #94a3b8;
+        max-width: 620px;
+        line-height: 1.75;
+        margin-bottom: 60px;
+        opacity: 0;
+        animation: fadeUp 0.6s 0.5s forwards;
+      }
+      @keyframes fadeUp {
+        from { opacity:0; transform:translateY(24px); }
+        to   { opacity:1; transform:translateY(0); }
+      }
+
+      /* ── Job Cards ── */
+      .jobs-list {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        margin-bottom: 60px;
+      }
+
+      .job-card {
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 18px;
+        padding: 28px 32px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        cursor: pointer;
+        text-decoration: none;
+        color: inherit;
+        transition: border-color 0.3s, background 0.3s, transform 0.3s;
+        opacity: 0;
+        animation: fadeUp 0.6s forwards;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .job-card::before {
+        content: '';
+        position: absolute;
+        left: 0; top: 0; bottom: 0;
+        width: 3px;
+        background: linear-gradient(180deg, #00d4ff, #7c3aed);
+        transform: scaleY(0);
+        transform-origin: top;
+        transition: transform 0.35s ease;
+      }
+
+      .job-card:nth-child(1) { animation-delay: 0.6s; }
+      .job-card:nth-child(2) { animation-delay: 0.75s; }
+      .job-card:nth-child(3) { animation-delay: 0.9s; }
+      .job-card:nth-child(4) { animation-delay: 1.05s; }
+
+      .job-card:hover {
+        border-color: rgba(0,212,255,0.3);
+        background: rgba(0,212,255,0.05);
+        transform: translateX(4px);
+      }
+      .job-card:hover::before { transform: scaleY(1); }
+
+      .job-left { display: flex; align-items: center; gap: 20px; }
+
+      .job-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+        background: rgba(0,212,255,0.08);
+        border: 1px solid rgba(0,212,255,0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        flex-shrink: 0;
+      }
+
+      .job-title {
+        font-family: 'Syne', sans-serif;
+        font-size: 17px;
+        font-weight: 700;
+        color: #e2e8f0;
+        margin-bottom: 5px;
+      }
+
+      .job-meta {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .tag {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        padding: 3px 10px;
+        border-radius: 20px;
+      }
+
+      .tag-dept  { background: rgba(124,58,237,0.15); color: #a78bfa; border: 1px solid rgba(124,58,237,0.25); }
+      .tag-type  { background: rgba(0,212,255,0.10);  color: #67e8f9; border: 1px solid rgba(0,212,255,0.2); }
+      .tag-loc   { background: rgba(255,255,255,0.05); color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); }
+
+      .apply-arrow {
         color: #00d4ff;
+        font-size: 20px;
+        flex-shrink: 0;
+        transition: transform 0.3s;
+      }
+      .job-card:hover .apply-arrow { transform: translateX(4px); }
+
+      /* ── Culture strip ── */
+      .culture-strip {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 16px;
+        margin-bottom: 50px;
+        opacity: 0;
+        animation: fadeUp 0.6s 1.2s forwards;
+      }
+
+      .culture-item {
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(255,255,255,0.07);
+        border-radius: 14px;
+        padding: 24px 20px;
+        text-align: center;
+      }
+
+      .culture-item span { font-size: 26px; display: block; margin-bottom: 10px; }
+      .culture-item strong {
+        font-family: 'Syne', sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        color: #e2e8f0;
+        display: block;
+        margin-bottom: 6px;
+      }
+      .culture-item p { font-size: 12px; color: #475569; line-height: 1.5; }
+
+      footer {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        padding: 40px;
+        color: #334155;
+        font-size: 13px;
+        border-top: 1px solid rgba(255,255,255,0.05);
       }
     </style>
   </head>
   <body>
-    <h1>Careers</h1>
 
-    <p>We will be hiring soon.</p>
+    <div class="bg-scene">
+      <div class="bg-grid"></div>
+      <div class="orb orb1"></div>
+      <div class="orb orb2"></div>
+      <div class="orb orb3"></div>
+    </div>
 
-    <p>
-      At AlgoCubic, we are building a team of passionate engineers and
-      innovators who want to shape the future with AI.
-    </p>
+    <header>
+      <a href="index.html" class="logo">AlgoCubic</a>
+      <nav>
+        <a href="whatwedo.html">What We Do</a>
+        <a href="products.html">Products</a>
+        <a href="careers.html" class="active">Careers</a>
+      </nav>
+    </header>
 
-    <p>Stay connected for future opportunities.</p>
+    <div class="page-wrapper">
+
+      <span class="label">We're Hiring</span>
+      <h1>Build the Future<br>With Us</h1>
+      <p class="intro">
+        AlgoCubic is growing fast. We're looking for driven, talented people who want to do meaningful work at the intersection of AI and engineering. If that's you — let's talk.
+      </p>
+
+      <!-- Job Listings -->
+      <div class="jobs-list">
+
+        <a href="job-executive-assistant.html" class="job-card">
+          <div class="job-left">
+            <div class="job-icon">📋</div>
+            <div>
+              <div class="job-title">Executive Assistant to Founder</div>
+              <div class="job-meta">
+                <span class="tag tag-dept">Operations</span>
+                <span class="tag tag-type">Full-time</span>
+                <span class="tag tag-loc">📍 On-site / Remote</span>
+              </div>
+            </div>
+          </div>
+          <span class="apply-arrow">→</span>
+        </a>
+
+        <a href="job-bde.html" class="job-card">
+          <div class="job-left">
+            <div class="job-icon">📈</div>
+            <div>
+              <div class="job-title">Business Development Executive (BDE)</div>
+              <div class="job-meta">
+                <span class="tag tag-dept">Sales & Growth</span>
+                <span class="tag tag-type">Full-time</span>
+                <span class="tag tag-loc">📍 Remote / Hybrid</span>
+              </div>
+            </div>
+          </div>
+          <span class="apply-arrow">→</span>
+        </a>
+
+        <a href="job-designer.html" class="job-card">
+          <div class="job-left">
+            <div class="job-icon">🎨</div>
+            <div>
+              <div class="job-title">Web Designer / UI-UX Engineer</div>
+              <div class="job-meta">
+                <span class="tag tag-dept">Design</span>
+                <span class="tag tag-type">Full-time</span>
+                <span class="tag tag-loc">📍 Remote</span>
+              </div>
+            </div>
+          </div>
+          <span class="apply-arrow">→</span>
+        </a>
+
+        <a href="job-fullstack.html" class="job-card">
+          <div class="job-left">
+            <div class="job-icon">💻</div>
+            <div>
+              <div class="job-title">Full Stack Developer (Java + React Preferred)</div>
+              <div class="job-meta">
+                <span class="tag tag-dept">Engineering</span>
+                <span class="tag tag-type">Full-time</span>
+                <span class="tag tag-loc">📍 Remote / Hybrid</span>
+              </div>
+            </div>
+          </div>
+          <span class="apply-arrow">→</span>
+        </a>
+
+      </div>
+
+      <!-- Culture -->
+      <div class="culture-strip">
+        <div class="culture-item">
+          <span>🚀</span>
+          <strong>Move Fast</strong>
+          <p>We ship, iterate, and learn quickly. No endless meetings.</p>
+        </div>
+        <div class="culture-item">
+          <span>🧠</span>
+          <strong>Think Deeply</strong>
+          <p>We solve real problems, not surface-level symptoms.</p>
+        </div>
+        <div class="culture-item">
+          <span>🤝</span>
+          <strong>Own It</strong>
+          <p>Everyone takes ownership. No passengers on this team.</p>
+        </div>
+        <div class="culture-item">
+          <span>🌍</span>
+          <strong>Remote-Friendly</strong>
+          <p>Work from anywhere. Results matter, not location.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <footer>© 2026 AlgoCubic Pvt Ltd — Engineering Digital Excellence</footer>
+
   </body>
 </html>
