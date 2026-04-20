@@ -613,7 +613,6 @@
             const res = await fetch(form.action, {
               method: "POST",
               body: data,
-              headers: { Accept: "application/json" },
             });
             if (res.ok) {
               form.style.display = "none";
