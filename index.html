@@ -158,6 +158,51 @@
         opacity: 1;
         transform: translateY(0);
       }
+      #contact {
+        scroll-margin-top: 120px;
+      }
+
+      .contact-form {
+        max-width: 700px;
+        margin: auto;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 40px;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+      }
+
+      .contact-form input,
+      .contact-form textarea,
+      .contact-form select {
+        width: 100%;
+        padding: 14px;
+        margin-bottom: 15px;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        background: rgba(255, 255, 255, 0.05);
+        color: white;
+        font-size: 15px;
+      }
+
+      .contact-form input::placeholder,
+      .contact-form textarea::placeholder {
+        color: #94a3b8;
+      }
+
+      .contact-form button {
+        width: 100%;
+        padding: 15px;
+        border: none;
+        border-radius: 10px;
+        font-weight: 600;
+        cursor: pointer;
+        background: linear-gradient(90deg, #00d4ff, #7c3aed);
+        color: white;
+      }
+
+      .contact-form button:hover {
+        opacity: 0.95;
+      }
     </style>
   </head>
   <body>
@@ -169,6 +214,7 @@
         <a href="whatwedo.html">What We Do</a>
         <a href="products.html">Products</a>
         <a href="careers.html">Careers</a>
+        <a href="#contact">Contact</a>
       </nav>
     </header>
 
@@ -179,7 +225,9 @@
         scalable digital products designed to transform and streamline modern
         business operations.
       </p>
-      <button class="cta">Get Started</button>
+      <a href="#contact">
+        <button class="cta">Get Free Consultation</button>
+      </a>
     </section>
 
     <section class="section fade">
@@ -212,9 +260,53 @@
       </div>
     </section>
 
-    <section class="section fade">
-      <h2>Contact</h2>
-      <p>contact@algocubic.com</p>
+    <section id="contact" class="section fade">
+      <h2>Get Free Consultation</h2>
+
+      <p style="color: #94a3b8; margin-bottom: 30px">
+        Looking for a website, custom software, or AI automation solution? Tell
+        us about your project and we'll get back to you within 24 hours.
+      </p>
+
+      <form
+        class="contact-form"
+        action="https://api.web3forms.com/submit"
+        method="POST"
+      >
+        <input
+          type="hidden"
+          name="access_key"
+          value="27ba9788-5988-4a0d-a5ea-539dcc778cc7"
+        />
+
+        <input
+          type="hidden"
+          name="redirect"
+          value="https://algocubic.com/thank-you.html"
+        />
+
+        <input type="text" name="name" placeholder="Full Name" required />
+
+        <input type="email" name="email" placeholder="Email Address" required />
+
+        <input type="tel" name="phone" placeholder="Phone Number" required />
+
+        <select name="service">
+          <option value="">Select Service</option>
+          <option>Website Development</option>
+          <option>Custom Software Development</option>
+          <option>AI Workflow Automation</option>
+          <option>AI Agents</option>
+        </select>
+
+        <textarea
+          name="message"
+          rows="5"
+          placeholder="Tell us about your project"
+        ></textarea>
+
+        <button type="submit">Get Free Quote</button>
+      </form>
     </section>
 
     <footer>© 2026 AlgoCubic Pvt Ltd</footer>
