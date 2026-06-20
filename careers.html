@@ -4,7 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Careers - AlgoCubic</title>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
     <style>
       :root {
         --cyan: #00d4ff;
@@ -12,10 +15,14 @@
         --dark: #020617;
       }
 
-      * { margin: 0; padding: 0; box-sizing: border-box; }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
       body {
-        font-family: 'DM Sans', sans-serif;
+        font-family: "DM Sans", sans-serif;
         background: var(--dark);
         color: #fff;
         overflow-x: hidden;
@@ -29,23 +36,42 @@
         overflow: hidden;
       }
       .bg-scene::before {
-        content: '';
+        content: "";
         position: absolute;
         inset: 0;
         background:
-          radial-gradient(ellipse 80% 60% at 20% 10%, rgba(0,212,255,0.18) 0%, transparent 60%),
-          radial-gradient(ellipse 60% 70% at 80% 80%, rgba(124,58,237,0.22) 0%, transparent 60%),
-          radial-gradient(ellipse 50% 50% at 50% 50%, rgba(15,23,42,0.95) 0%, #020617 100%);
+          radial-gradient(
+            ellipse 80% 60% at 20% 10%,
+            rgba(0, 212, 255, 0.18) 0%,
+            transparent 60%
+          ),
+          radial-gradient(
+            ellipse 60% 70% at 80% 80%,
+            rgba(124, 58, 237, 0.22) 0%,
+            transparent 60%
+          ),
+          radial-gradient(
+            ellipse 50% 50% at 50% 50%,
+            rgba(15, 23, 42, 0.95) 0%,
+            #020617 100%
+          );
         animation: bgPulse 8s ease-in-out infinite alternate;
       }
-      @keyframes bgPulse { 0% { opacity:1; } 100% { opacity:0.7; } }
+      @keyframes bgPulse {
+        0% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0.7;
+        }
+      }
 
       .bg-grid {
         position: absolute;
         inset: 0;
         background-image:
-          linear-gradient(rgba(0,212,255,0.04) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(0,212,255,0.04) 1px, transparent 1px);
+          linear-gradient(rgba(0, 212, 255, 0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0, 212, 255, 0.04) 1px, transparent 1px);
         background-size: 60px 60px;
       }
 
@@ -55,14 +81,44 @@
         filter: blur(80px);
         animation: orbFloat linear infinite;
       }
-      .orb1 { width:500px; height:500px; background:rgba(0,212,255,0.08); top:-100px; left:-100px; animation-duration:20s; }
-      .orb2 { width:400px; height:400px; background:rgba(124,58,237,0.10); bottom:-80px; right:-80px; animation-duration:25s; animation-direction:reverse; }
-      .orb3 { width:300px; height:300px; background:rgba(0,212,255,0.06); top:40%; left:60%; animation-duration:18s; }
+      .orb1 {
+        width: 500px;
+        height: 500px;
+        background: rgba(0, 212, 255, 0.08);
+        top: -100px;
+        left: -100px;
+        animation-duration: 20s;
+      }
+      .orb2 {
+        width: 400px;
+        height: 400px;
+        background: rgba(124, 58, 237, 0.1);
+        bottom: -80px;
+        right: -80px;
+        animation-duration: 25s;
+        animation-direction: reverse;
+      }
+      .orb3 {
+        width: 300px;
+        height: 300px;
+        background: rgba(0, 212, 255, 0.06);
+        top: 40%;
+        left: 60%;
+        animation-duration: 18s;
+      }
       @keyframes orbFloat {
-        0%   { transform:translate(0,0) scale(1); }
-        33%  { transform:translate(40px,-30px) scale(1.05); }
-        66%  { transform:translate(-20px,40px) scale(0.97); }
-        100% { transform:translate(0,0) scale(1); }
+        0% {
+          transform: translate(0, 0) scale(1);
+        }
+        33% {
+          transform: translate(40px, -30px) scale(1.05);
+        }
+        66% {
+          transform: translate(-20px, 40px) scale(0.97);
+        }
+        100% {
+          transform: translate(0, 0) scale(1);
+        }
       }
 
       header {
@@ -74,12 +130,12 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background: rgba(2,6,23,0.5);
+        background: rgba(2, 6, 23, 0.5);
         backdrop-filter: blur(16px);
-        border-bottom: 1px solid rgba(0,212,255,0.08);
+        border-bottom: 1px solid rgba(0, 212, 255, 0.08);
       }
       .logo {
-        font-family: 'Syne', sans-serif;
+        font-family: "Syne", sans-serif;
         font-size: 26px;
         font-weight: 800;
         background: linear-gradient(90deg, #00d4ff, #7c3aed);
@@ -95,7 +151,10 @@
         font-weight: 500;
         transition: color 0.3s;
       }
-      nav a:hover, nav a.active { color: #00d4ff; }
+      nav a:hover,
+      nav a.active {
+        color: #00d4ff;
+      }
 
       .page-wrapper {
         position: relative;
@@ -112,7 +171,7 @@
         letter-spacing: 3px;
         text-transform: uppercase;
         color: #00d4ff;
-        border: 1px solid rgba(0,212,255,0.3);
+        border: 1px solid rgba(0, 212, 255, 0.3);
         padding: 6px 16px;
         border-radius: 30px;
         margin-bottom: 28px;
@@ -120,7 +179,7 @@
         animation: fadeUp 0.6s 0.2s forwards;
       }
       h1 {
-        font-family: 'Syne', sans-serif;
+        font-family: "Syne", sans-serif;
         font-size: clamp(36px, 5vw, 58px);
         font-weight: 800;
         line-height: 1.12;
@@ -141,8 +200,14 @@
         animation: fadeUp 0.6s 0.5s forwards;
       }
       @keyframes fadeUp {
-        from { opacity:0; transform:translateY(24px); }
-        to   { opacity:1; transform:translateY(0); }
+        from {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       /* ── Job Cards ── */
@@ -154,8 +219,8 @@
       }
 
       .job-card {
-        background: rgba(255,255,255,0.04);
-        border: 1px solid rgba(255,255,255,0.08);
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 18px;
         padding: 28px 32px;
         display: flex;
@@ -165,7 +230,10 @@
         cursor: pointer;
         text-decoration: none;
         color: inherit;
-        transition: border-color 0.3s, background 0.3s, transform 0.3s;
+        transition:
+          border-color 0.3s,
+          background 0.3s,
+          transform 0.3s;
         opacity: 0;
         animation: fadeUp 0.6s forwards;
         position: relative;
@@ -173,9 +241,11 @@
       }
 
       .job-card::before {
-        content: '';
+        content: "";
         position: absolute;
-        left: 0; top: 0; bottom: 0;
+        left: 0;
+        top: 0;
+        bottom: 0;
         width: 3px;
         background: linear-gradient(180deg, #00d4ff, #7c3aed);
         transform: scaleY(0);
@@ -183,26 +253,40 @@
         transition: transform 0.35s ease;
       }
 
-      .job-card:nth-child(1) { animation-delay: 0.6s; }
-      .job-card:nth-child(2) { animation-delay: 0.75s; }
-      .job-card:nth-child(3) { animation-delay: 0.9s; }
-      .job-card:nth-child(4) { animation-delay: 1.05s; }
+      .job-card:nth-child(1) {
+        animation-delay: 0.6s;
+      }
+      .job-card:nth-child(2) {
+        animation-delay: 0.75s;
+      }
+      .job-card:nth-child(3) {
+        animation-delay: 0.9s;
+      }
+      .job-card:nth-child(4) {
+        animation-delay: 1.05s;
+      }
 
       .job-card:hover {
-        border-color: rgba(0,212,255,0.3);
-        background: rgba(0,212,255,0.05);
+        border-color: rgba(0, 212, 255, 0.3);
+        background: rgba(0, 212, 255, 0.05);
         transform: translateX(4px);
       }
-      .job-card:hover::before { transform: scaleY(1); }
+      .job-card:hover::before {
+        transform: scaleY(1);
+      }
 
-      .job-left { display: flex; align-items: center; gap: 20px; }
+      .job-left {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
 
       .job-icon {
         width: 52px;
         height: 52px;
         border-radius: 14px;
-        background: rgba(0,212,255,0.08);
-        border: 1px solid rgba(0,212,255,0.15);
+        background: rgba(0, 212, 255, 0.08);
+        border: 1px solid rgba(0, 212, 255, 0.15);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -211,7 +295,7 @@
       }
 
       .job-title {
-        font-family: 'Syne', sans-serif;
+        font-family: "Syne", sans-serif;
         font-size: 17px;
         font-weight: 700;
         color: #e2e8f0;
@@ -232,9 +316,21 @@
         border-radius: 20px;
       }
 
-      .tag-dept  { background: rgba(124,58,237,0.15); color: #a78bfa; border: 1px solid rgba(124,58,237,0.25); }
-      .tag-type  { background: rgba(0,212,255,0.10);  color: #67e8f9; border: 1px solid rgba(0,212,255,0.2); }
-      .tag-loc   { background: rgba(255,255,255,0.05); color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); }
+      .tag-dept {
+        background: rgba(124, 58, 237, 0.15);
+        color: #a78bfa;
+        border: 1px solid rgba(124, 58, 237, 0.25);
+      }
+      .tag-type {
+        background: rgba(0, 212, 255, 0.1);
+        color: #67e8f9;
+        border: 1px solid rgba(0, 212, 255, 0.2);
+      }
+      .tag-loc {
+        background: rgba(255, 255, 255, 0.05);
+        color: #94a3b8;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
 
       .apply-arrow {
         color: #00d4ff;
@@ -242,7 +338,9 @@
         flex-shrink: 0;
         transition: transform 0.3s;
       }
-      .job-card:hover .apply-arrow { transform: translateX(4px); }
+      .job-card:hover .apply-arrow {
+        transform: translateX(4px);
+      }
 
       /* ── Culture strip ── */
       .culture-strip {
@@ -255,23 +353,31 @@
       }
 
       .culture-item {
-        background: rgba(255,255,255,0.03);
-        border: 1px solid rgba(255,255,255,0.07);
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.07);
         border-radius: 14px;
         padding: 24px 20px;
         text-align: center;
       }
 
-      .culture-item span { font-size: 26px; display: block; margin-bottom: 10px; }
+      .culture-item span {
+        font-size: 26px;
+        display: block;
+        margin-bottom: 10px;
+      }
       .culture-item strong {
-        font-family: 'Syne', sans-serif;
+        font-family: "Syne", sans-serif;
         font-size: 14px;
         font-weight: 700;
         color: #e2e8f0;
         display: block;
         margin-bottom: 6px;
       }
-      .culture-item p { font-size: 12px; color: #475569; line-height: 1.5; }
+      .culture-item p {
+        font-size: 12px;
+        color: #475569;
+        line-height: 1.5;
+      }
 
       footer {
         position: relative;
@@ -280,12 +386,25 @@
         padding: 40px;
         color: #334155;
         font-size: 13px;
-        border-top: 1px solid rgba(255,255,255,0.05);
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
       }
     </style>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=AW-18250614549"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "AW-18250614549");
+    </script>
   </head>
   <body>
-
     <div class="bg-scene">
       <div class="bg-grid"></div>
       <div class="orb orb1"></div>
@@ -303,16 +422,16 @@
     </header>
 
     <div class="page-wrapper">
-
       <span class="label">We're Hiring</span>
-      <h1>Build the Future<br>With Us</h1>
+      <h1>Build the Future<br />With Us</h1>
       <p class="intro">
-        AlgoCubic is growing fast. We're looking for driven, talented people who want to do meaningful work at the intersection of AI and engineering. If that's you — let's talk.
+        AlgoCubic is growing fast. We're looking for driven, talented people who
+        want to do meaningful work at the intersection of AI and engineering. If
+        that's you — let's talk.
       </p>
 
       <!-- Job Listings -->
       <div class="jobs-list">
-
         <a href="job-executive-assistant.html" class="job-card">
           <div class="job-left">
             <div class="job-icon">📋</div>
@@ -362,7 +481,9 @@
           <div class="job-left">
             <div class="job-icon">💻</div>
             <div>
-              <div class="job-title">Full Stack Developer (Java + React Preferred)</div>
+              <div class="job-title">
+                Full Stack Developer (Java + React Preferred)
+              </div>
               <div class="job-meta">
                 <span class="tag tag-dept">Engineering</span>
                 <span class="tag tag-type">Full-time</span>
@@ -372,7 +493,6 @@
           </div>
           <span class="apply-arrow">→</span>
         </a>
-
       </div>
 
       <!-- Culture -->
@@ -398,10 +518,8 @@
           <p>Work from anywhere. Results matter, not location.</p>
         </div>
       </div>
-
     </div>
 
     <footer>© 2026 AlgoCubic Pvt Ltd — Engineering Digital Excellence</footer>
-
   </body>
 </html>

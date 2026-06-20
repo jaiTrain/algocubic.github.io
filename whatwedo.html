@@ -4,7 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>What We Do - AlgoCubic</title>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
     <style>
       :root {
         --cyan: #00d4ff;
@@ -13,10 +16,14 @@
         --mid: #0f172a;
       }
 
-      * { margin: 0; padding: 0; box-sizing: border-box; }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
       body {
-        font-family: 'DM Sans', sans-serif;
+        font-family: "DM Sans", sans-serif;
         background: var(--dark);
         color: #fff;
         overflow-x: hidden;
@@ -32,19 +39,35 @@
       }
 
       .bg-scene::before {
-        content: '';
+        content: "";
         position: absolute;
         inset: 0;
         background:
-          radial-gradient(ellipse 80% 60% at 20% 10%, rgba(0,212,255,0.18) 0%, transparent 60%),
-          radial-gradient(ellipse 60% 70% at 80% 80%, rgba(124,58,237,0.22) 0%, transparent 60%),
-          radial-gradient(ellipse 50% 50% at 50% 50%, rgba(15,23,42,0.95) 0%, #020617 100%);
+          radial-gradient(
+            ellipse 80% 60% at 20% 10%,
+            rgba(0, 212, 255, 0.18) 0%,
+            transparent 60%
+          ),
+          radial-gradient(
+            ellipse 60% 70% at 80% 80%,
+            rgba(124, 58, 237, 0.22) 0%,
+            transparent 60%
+          ),
+          radial-gradient(
+            ellipse 50% 50% at 50% 50%,
+            rgba(15, 23, 42, 0.95) 0%,
+            #020617 100%
+          );
         animation: bgPulse 8s ease-in-out infinite alternate;
       }
 
       @keyframes bgPulse {
-        0%   { opacity: 1; }
-        100% { opacity: 0.7; }
+        0% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0.7;
+        }
       }
 
       /* Grid overlay */
@@ -52,8 +75,8 @@
         position: absolute;
         inset: 0;
         background-image:
-          linear-gradient(rgba(0,212,255,0.04) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(0,212,255,0.04) 1px, transparent 1px);
+          linear-gradient(rgba(0, 212, 255, 0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0, 212, 255, 0.04) 1px, transparent 1px);
         background-size: 60px 60px;
       }
 
@@ -64,15 +87,45 @@
         filter: blur(80px);
         animation: orbFloat linear infinite;
       }
-      .orb1 { width: 500px; height: 500px; background: rgba(0,212,255,0.08); top: -100px; left: -100px; animation-duration: 20s; }
-      .orb2 { width: 400px; height: 400px; background: rgba(124,58,237,0.10); bottom: -80px; right: -80px; animation-duration: 25s; animation-direction: reverse; }
-      .orb3 { width: 300px; height: 300px; background: rgba(0,212,255,0.06); top: 40%; left: 60%; animation-duration: 18s; }
+      .orb1 {
+        width: 500px;
+        height: 500px;
+        background: rgba(0, 212, 255, 0.08);
+        top: -100px;
+        left: -100px;
+        animation-duration: 20s;
+      }
+      .orb2 {
+        width: 400px;
+        height: 400px;
+        background: rgba(124, 58, 237, 0.1);
+        bottom: -80px;
+        right: -80px;
+        animation-duration: 25s;
+        animation-direction: reverse;
+      }
+      .orb3 {
+        width: 300px;
+        height: 300px;
+        background: rgba(0, 212, 255, 0.06);
+        top: 40%;
+        left: 60%;
+        animation-duration: 18s;
+      }
 
       @keyframes orbFloat {
-        0%   { transform: translate(0,0) scale(1); }
-        33%  { transform: translate(40px,-30px) scale(1.05); }
-        66%  { transform: translate(-20px,40px) scale(0.97); }
-        100% { transform: translate(0,0) scale(1); }
+        0% {
+          transform: translate(0, 0) scale(1);
+        }
+        33% {
+          transform: translate(40px, -30px) scale(1.05);
+        }
+        66% {
+          transform: translate(-20px, 40px) scale(0.97);
+        }
+        100% {
+          transform: translate(0, 0) scale(1);
+        }
       }
 
       /* ── Header ── */
@@ -85,13 +138,13 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background: rgba(2,6,23,0.5);
+        background: rgba(2, 6, 23, 0.5);
         backdrop-filter: blur(16px);
-        border-bottom: 1px solid rgba(0,212,255,0.08);
+        border-bottom: 1px solid rgba(0, 212, 255, 0.08);
       }
 
       .logo {
-        font-family: 'Syne', sans-serif;
+        font-family: "Syne", sans-serif;
         font-size: 26px;
         font-weight: 800;
         background: linear-gradient(90deg, #00d4ff, #7c3aed);
@@ -109,7 +162,10 @@
         letter-spacing: 0.5px;
         transition: color 0.3s;
       }
-      nav a:hover, nav a.active { color: #00d4ff; }
+      nav a:hover,
+      nav a.active {
+        color: #00d4ff;
+      }
 
       /* ── Page Content ── */
       .page-wrapper {
@@ -128,7 +184,7 @@
         letter-spacing: 3px;
         text-transform: uppercase;
         color: #00d4ff;
-        border: 1px solid rgba(0,212,255,0.3);
+        border: 1px solid rgba(0, 212, 255, 0.3);
         padding: 6px 16px;
         border-radius: 30px;
         margin-bottom: 28px;
@@ -137,7 +193,7 @@
       }
 
       h1 {
-        font-family: 'Syne', sans-serif;
+        font-family: "Syne", sans-serif;
         font-size: clamp(38px, 5vw, 62px);
         font-weight: 800;
         line-height: 1.12;
@@ -160,8 +216,14 @@
       }
 
       @keyframes fadeUp {
-        from { opacity: 0; transform: translateY(24px); }
-        to   { opacity: 1; transform: translateY(0); }
+        from {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       /* ── Service Cards ── */
@@ -173,28 +235,45 @@
       }
 
       .service-card {
-        background: rgba(255,255,255,0.04);
-        border: 1px solid rgba(255,255,255,0.08);
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 20px;
         padding: 36px 32px;
         position: relative;
         overflow: hidden;
-        transition: transform 0.35s ease, border-color 0.35s ease, background 0.35s ease;
+        transition:
+          transform 0.35s ease,
+          border-color 0.35s ease,
+          background 0.35s ease;
         opacity: 0;
         animation: fadeUp 0.6s forwards;
       }
 
-      .service-card:nth-child(1) { animation-delay: 0.6s; }
-      .service-card:nth-child(2) { animation-delay: 0.75s; }
-      .service-card:nth-child(3) { animation-delay: 0.9s; }
-      .service-card:nth-child(4) { animation-delay: 1.05s; }
-      .service-card:nth-child(5) { animation-delay: 1.2s; }
-      .service-card:nth-child(6) { animation-delay: 1.35s; }
+      .service-card:nth-child(1) {
+        animation-delay: 0.6s;
+      }
+      .service-card:nth-child(2) {
+        animation-delay: 0.75s;
+      }
+      .service-card:nth-child(3) {
+        animation-delay: 0.9s;
+      }
+      .service-card:nth-child(4) {
+        animation-delay: 1.05s;
+      }
+      .service-card:nth-child(5) {
+        animation-delay: 1.2s;
+      }
+      .service-card:nth-child(6) {
+        animation-delay: 1.35s;
+      }
 
       .service-card::before {
-        content: '';
+        content: "";
         position: absolute;
-        top: 0; left: 0; right: 0;
+        top: 0;
+        left: 0;
+        right: 0;
         height: 2px;
         background: linear-gradient(90deg, #00d4ff, #7c3aed);
         transform: scaleX(0);
@@ -204,11 +283,13 @@
 
       .service-card:hover {
         transform: translateY(-8px);
-        border-color: rgba(0,212,255,0.25);
-        background: rgba(0,212,255,0.06);
+        border-color: rgba(0, 212, 255, 0.25);
+        background: rgba(0, 212, 255, 0.06);
       }
 
-      .service-card:hover::before { transform: scaleX(1); }
+      .service-card:hover::before {
+        transform: scaleX(1);
+      }
 
       .card-icon {
         font-size: 32px;
@@ -217,7 +298,7 @@
       }
 
       .card-title {
-        font-family: 'Syne', sans-serif;
+        font-family: "Syne", sans-serif;
         font-size: 18px;
         font-weight: 700;
         color: #fff;
@@ -234,25 +315,29 @@
       .stats-row {
         display: flex;
         gap: 0;
-        border: 1px solid rgba(255,255,255,0.08);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 20px;
         overflow: hidden;
         margin-bottom: 80px;
-        background: rgba(255,255,255,0.02);
+        background: rgba(255, 255, 255, 0.02);
       }
 
       .stat {
         flex: 1;
         padding: 40px 20px;
         text-align: center;
-        border-right: 1px solid rgba(255,255,255,0.08);
+        border-right: 1px solid rgba(255, 255, 255, 0.08);
         transition: background 0.3s;
       }
-      .stat:last-child { border-right: none; }
-      .stat:hover { background: rgba(0,212,255,0.04); }
+      .stat:last-child {
+        border-right: none;
+      }
+      .stat:hover {
+        background: rgba(0, 212, 255, 0.04);
+      }
 
       .stat-number {
-        font-family: 'Syne', sans-serif;
+        font-family: "Syne", sans-serif;
         font-size: 38px;
         font-weight: 800;
         background: linear-gradient(90deg, #00d4ff, #7c3aed);
@@ -270,7 +355,7 @@
 
       /* ── Approach section ── */
       .approach-title {
-        font-family: 'Syne', sans-serif;
+        font-family: "Syne", sans-serif;
         font-size: 28px;
         font-weight: 700;
         margin-bottom: 32px;
@@ -288,24 +373,26 @@
         align-items: flex-start;
         gap: 20px;
         padding: 24px 28px;
-        background: rgba(255,255,255,0.03);
-        border: 1px solid rgba(255,255,255,0.07);
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.07);
         border-radius: 14px;
-        transition: border-color 0.3s, background 0.3s;
+        transition:
+          border-color 0.3s,
+          background 0.3s;
       }
 
       .approach-item:hover {
-        border-color: rgba(124,58,237,0.35);
-        background: rgba(124,58,237,0.05);
+        border-color: rgba(124, 58, 237, 0.35);
+        background: rgba(124, 58, 237, 0.05);
       }
 
       .approach-num {
-        font-family: 'Syne', sans-serif;
+        font-family: "Syne", sans-serif;
         font-size: 13px;
         font-weight: 700;
         color: #7c3aed;
-        background: rgba(124,58,237,0.15);
-        border: 1px solid rgba(124,58,237,0.3);
+        background: rgba(124, 58, 237, 0.15);
+        border: 1px solid rgba(124, 58, 237, 0.3);
         border-radius: 8px;
         padding: 4px 10px;
         white-space: nowrap;
@@ -333,12 +420,25 @@
         padding: 40px;
         color: #334155;
         font-size: 13px;
-        border-top: 1px solid rgba(255,255,255,0.05);
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
       }
     </style>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=AW-18250614549"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "AW-18250614549");
+    </script>
   </head>
   <body>
-
     <!-- Background -->
     <div class="bg-scene">
       <div class="bg-grid"></div>
@@ -358,11 +458,12 @@
     </header>
 
     <div class="page-wrapper">
-
       <span class="label">Our Capabilities</span>
-      <h1>We Build What<br>Tomorrow Needs</h1>
+      <h1>We Build What<br />Tomorrow Needs</h1>
       <p class="intro">
-        At AlgoCubic, we empower businesses by combining elite software engineering with AI-driven solutions — helping companies scale faster, automate smarter, and compete harder.
+        At AlgoCubic, we empower businesses by combining elite software
+        engineering with AI-driven solutions — helping companies scale faster,
+        automate smarter, and compete harder.
       </p>
 
       <!-- Services -->
@@ -370,32 +471,51 @@
         <div class="service-card">
           <span class="card-icon">🤖</span>
           <div class="card-title">AI Integration & Automation</div>
-          <div class="card-desc">We embed intelligent automation into your workflows, reducing manual overhead and unlocking data-driven decision-making at scale.</div>
+          <div class="card-desc">
+            We embed intelligent automation into your workflows, reducing manual
+            overhead and unlocking data-driven decision-making at scale.
+          </div>
         </div>
         <div class="service-card">
           <span class="card-icon">🌐</span>
           <div class="card-title">Scalable Web Applications</div>
-          <div class="card-desc">From MVPs to enterprise platforms, we architect and build high-performance web apps using modern tech stacks like React, Java, and Node.</div>
+          <div class="card-desc">
+            From MVPs to enterprise platforms, we architect and build
+            high-performance web apps using modern tech stacks like React, Java,
+            and Node.
+          </div>
         </div>
         <div class="service-card">
           <span class="card-icon">👥</span>
           <div class="card-title">Staff Augmentation</div>
-          <div class="card-desc">On-demand access to skilled engineers who embed into your team. No long hiring cycles — just ready-to-contribute talent, fast.</div>
+          <div class="card-desc">
+            On-demand access to skilled engineers who embed into your team. No
+            long hiring cycles — just ready-to-contribute talent, fast.
+          </div>
         </div>
         <div class="service-card">
           <span class="card-icon">🎨</span>
           <div class="card-title">UI/UX & Product Design</div>
-          <div class="card-desc">We design interfaces that convert — blending beautiful aesthetics with business goals for maximum engagement and clarity.</div>
+          <div class="card-desc">
+            We design interfaces that convert — blending beautiful aesthetics
+            with business goals for maximum engagement and clarity.
+          </div>
         </div>
         <div class="service-card">
           <span class="card-icon">☁️</span>
           <div class="card-title">Cloud Architecture</div>
-          <div class="card-desc">Scalable, resilient cloud infrastructure on AWS, GCP, or Azure — optimized for performance, cost, and security from day one.</div>
+          <div class="card-desc">
+            Scalable, resilient cloud infrastructure on AWS, GCP, or Azure —
+            optimized for performance, cost, and security from day one.
+          </div>
         </div>
         <div class="service-card">
           <span class="card-icon">📊</span>
           <div class="card-title">Data & Analytics Solutions</div>
-          <div class="card-desc">We build pipelines, dashboards, and models that turn raw data into actionable insight — so your business never flies blind.</div>
+          <div class="card-desc">
+            We build pipelines, dashboards, and models that turn raw data into
+            actionable insight — so your business never flies blind.
+          </div>
         </div>
       </div>
 
@@ -426,35 +546,45 @@
           <span class="approach-num">01</span>
           <div class="approach-text">
             <strong>Understand Your Business</strong>
-            <span>We start by deeply understanding your goals, constraints, and users — because good software starts with good thinking.</span>
+            <span
+              >We start by deeply understanding your goals, constraints, and
+              users — because good software starts with good thinking.</span
+            >
           </div>
         </div>
         <div class="approach-item">
           <span class="approach-num">02</span>
           <div class="approach-text">
             <strong>Architect for Scale</strong>
-            <span>Every system we build is designed to grow with you — no costly rewrites down the road.</span>
+            <span
+              >Every system we build is designed to grow with you — no costly
+              rewrites down the road.</span
+            >
           </div>
         </div>
         <div class="approach-item">
           <span class="approach-num">03</span>
           <div class="approach-text">
             <strong>Embed AI Where It Matters</strong>
-            <span>We integrate AI not as a gimmick but as a genuine productivity and intelligence layer within your product.</span>
+            <span
+              >We integrate AI not as a gimmick but as a genuine productivity
+              and intelligence layer within your product.</span
+            >
           </div>
         </div>
         <div class="approach-item">
           <span class="approach-num">04</span>
           <div class="approach-text">
             <strong>Ship, Measure, Improve</strong>
-            <span>Rapid iteration with real feedback loops — so your product keeps getting better, not just bigger.</span>
+            <span
+              >Rapid iteration with real feedback loops — so your product keeps
+              getting better, not just bigger.</span
+            >
           </div>
         </div>
       </div>
-
     </div>
 
     <footer>© 2026 AlgoCubic Pvt Ltd — Engineering Digital Excellence</footer>
-
   </body>
 </html>
