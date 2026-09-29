@@ -1,415 +1,178 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AlgoCubic</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
-      rel="stylesheet"
-    />
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AlgoCubic — AWS Cloud &amp; AI Engineering</title>
+<meta name="description" content="AlgoCubic is a technology company delivering AWS cloud engineering and AI engineering, alongside staff augmentation and full dev-project delivery.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
 
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
+<div class="field-bg"></div>
+<canvas id="ambient-canvas" style="position:fixed; inset:0; z-index:-1; opacity:0.6;"></canvas>
 
-      body {
-        font-family: "Inter", sans-serif;
-        background: radial-gradient(circle at top, #0f172a, #020617);
-        color: #fff;
-        overflow-x: hidden;
-      }
+<nav class="site-nav">
+  <div class="container">
+    <a href="index.html" class="brand">
+      <img src="assets/images/logo-mark-dark.png" alt="AlgoCubic logo" class="brand-mark">
+      AlgoCubic
+    </a>
+    <div class="nav-links">
+      <a href="whatwedo.html">What We Do</a>
+      <a href="products.html">Products</a>
+      <a href="careers.html">Careers</a>
+      <a href="#contact" class="btn">Contact</a>
+    </div>
+    <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
 
-      canvas {
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: -1;
-      }
-
-      header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px 60px;
-        position: fixed;
-        width: 100%;
-        background: rgba(0, 0, 0, 0.4);
-        backdrop-filter: blur(10px);
-        z-index: 100;
-      }
-
-      .logo {
-        font-size: 26px;
-        font-weight: 700;
-        background: linear-gradient(90deg, #00d4ff, #7c3aed);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-
-      nav a {
-        margin-left: 30px;
-        text-decoration: none;
-        color: #ccc;
-        transition: 0.3s;
-      }
-
-      nav a:hover {
-        color: #fff;
-      }
-
-      .hero {
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        padding: 0 20px;
-      }
-
-      .hero h1 {
-        font-size: 56px;
-        max-width: 900px;
-        background: linear-gradient(90deg, #ffffff, #00d4ff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-
-      .hero p {
-        margin-top: 20px;
-        font-size: 20px;
-        color: #94a3b8;
-        max-width: 600px;
-      }
-
-      .cta {
-        margin-top: 30px;
-        padding: 14px 30px;
-        border-radius: 30px;
-        border: none;
-        font-weight: 600;
-        cursor: pointer;
-        background: linear-gradient(90deg, #00d4ff, #7c3aed);
-        color: #fff;
-        transition: 0.3s;
-      }
-
-      .cta:hover {
-        transform: scale(1.05);
-      }
-
-      .section {
-        padding: 100px 60px;
-        text-align: center;
-      }
-
-      .section h2 {
-        font-size: 36px;
-        margin-bottom: 40px;
-      }
-
-      .cards {
-        display: flex;
-        justify-content: center;
-        gap: 30px;
-        flex-wrap: wrap;
-      }
-
-      .card {
-        width: 280px;
-        padding: 30px;
-        border-radius: 16px;
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(10px);
-        transition: 0.3s;
-      }
-
-      .card:hover {
-        transform: translateY(-10px) scale(1.03);
-        background: rgba(255, 255, 255, 0.08);
-      }
-
-      .product {
-        max-width: 900px;
-        margin: auto;
-        background: rgba(255, 255, 255, 0.04);
-        padding: 40px;
-        border-radius: 20px;
-        backdrop-filter: blur(10px);
-      }
-
-      footer {
-        text-align: center;
-        padding: 40px;
-        color: #94a3b8;
-      }
-
-      .fade {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: all 1s ease;
-      }
-
-      .fade.show {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      #contact {
-        scroll-margin-top: 120px;
-      }
-
-      .contact-form {
-        max-width: 700px;
-        margin: auto;
-        background: rgba(255, 255, 255, 0.05);
-        padding: 40px;
-        border-radius: 20px;
-        backdrop-filter: blur(10px);
-      }
-
-      .contact-form input,
-      .contact-form textarea,
-      .contact-form select {
-        width: 100%;
-        padding: 14px;
-        margin-bottom: 15px;
-        border-radius: 10px;
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        background: rgba(255, 255, 255, 0.05);
-        color: white;
-        font-size: 15px;
-      }
-
-      .contact-form input::placeholder,
-      .contact-form textarea::placeholder {
-        color: #94a3b8;
-      }
-
-      .contact-form button {
-        width: 100%;
-        padding: 15px;
-        border: none;
-        border-radius: 10px;
-        font-weight: 600;
-        cursor: pointer;
-        background: linear-gradient(90deg, #00d4ff, #7c3aed);
-        color: white;
-      }
-
-      .contact-form button:hover {
-        opacity: 0.95;
-      }
-    </style>
-    <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=AW-18250614549"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      gtag("config", "AW-18250614549");
-    </script>
-    <!-- Meta Pixel Code -->
-    <script>
-      !(function (f, b, e, v, n, t, s) {
-        if (f.fbq) return;
-        n = f.fbq = function () {
-          n.callMethod
-            ? n.callMethod.apply(n, arguments)
-            : n.queue.push(arguments);
-        };
-        if (!f._fbq) f._fbq = n;
-        n.push = n;
-        n.loaded = !0;
-        n.version = "2.0";
-        n.queue = [];
-        t = b.createElement(e);
-        t.async = !0;
-        t.src = v;
-        s = b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t, s);
-      })(
-        window,
-        document,
-        "script",
-        "https://connect.facebook.net/en_US/fbevents.js",
-      );
-      fbq("init", "1040776168606186");
-      fbq("track", "PageView");
-    </script>
-    <noscript
-      ><img
-        height="1"
-        width="1"
-        style="display: none"
-        src="https://www.facebook.com/tr?id=1040776168606186&ev=PageView&noscript=1"
-    /></noscript>
-    <!-- End Meta Pixel Code -->
-  </head>
-  <body>
-    <canvas id="bg"></canvas>
-
-    <header>
-      <div class="logo">AlgoCubic</div>
-      <nav>
-        <a href="whatwedo.html">What We Do</a>
-        <a href="products.html">Products</a>
-        <a href="careers.html">Careers</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
-
-    <section class="hero">
-      <h1>Engineering Digital Excellence with AI</h1>
-      <p>
-        AlgoCubic is an AI-first technology company developing intelligent,
-        scalable digital products designed to transform and streamline modern
-        business operations.
+<header class="hero">
+  <div id="hero-cube" style="position:absolute; inset:0; z-index:0; pointer-events:none;"></div>
+  <div class="container" style="position:relative; z-index:1;">
+    <div style="max-width:640px;">
+      <div class="eyebrow">AWS Cloud &amp; AI Engineering</div>
+      <h1 style="font-size:clamp(2.4rem, 5.4vw, 4.1rem);">
+        Engineering Digital <span class="text-grad">Excellence</span> on AWS &amp; AI
+      </h1>
+      <p style="font-size:1.12rem; max-width:520px;">
+        AlgoCubic is a technology company that masters two disciplines at once — scalable AWS
+        cloud infrastructure and intelligent AI engineering — to build digital products that
+        transform and streamline modern business operations.
       </p>
-      <a href="#contact">
-        <button class="cta">Get Free Consultation</button>
-      </a>
-    </section>
-
-    <section class="section fade">
-      <h2>What We Deliver</h2>
-      <div class="cards">
-        <div class="card">AI-powered web applications</div>
-        <div class="card">High-performance engineering teams</div>
-        <div class="card">End-to-end product development</div>
+      <div style="display:flex; gap:16px; margin-top:32px; flex-wrap:wrap;">
+        <a href="#contact" class="btn btn-solid">Get Free Consultation</a>
+        <a href="#focus" class="btn">What We Deliver ↓</a>
       </div>
-    </section>
+    </div>
+  </div>
+</header>
 
-    <section class="section fade">
-      <h2>Our Product</h2>
-      <div class="product">
-        <h3>Launching soon....</h3>
-        <p style="margin-top: 15px; color: #94a3b8">
-          We are building AI-native, business-centric products that leverage
-          intelligent automation, advanced data processing, and scalable cloud
-          architectures to optimize and transform modern enterprise workflows.
-        </p>
+<section id="focus">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Core Capabilities</div>
+      <h2>Two disciplines, mastered equally</h2>
+      <p>AlgoCubic is built around two deep capabilities rather than a scattered service list — AWS
+      cloud engineering and AI engineering — and every project draws on one or both.</p>
+    </div>
+    <div class="grid-2 reveal-stagger reveal">
+      <div class="card stagger-item">
+        <div class="num">01</div>
+        <h3>AWS &amp; Cloud Engineering</h3>
+        <p>Architecture, migrations, CI/CD, and cost-sane infrastructure on AWS — built and run by
+        engineers who live in the console day to day, not just the diagrams.</p>
       </div>
-    </section>
-
-    <section class="section fade">
-      <h2>Why AlgoCubic</h2>
-      <div class="cards">
-        <div class="card">Built for scalability and speed</div>
-        <div class="card">AI-first engineering mindset</div>
-        <div class="card">Focused on real business impact</div>
+      <div class="card stagger-item">
+        <div class="num">02</div>
+        <h3>AI Engineering &amp; Automation</h3>
+        <p>AI agents and workflow automation designed around a real bottleneck, deployed on
+        infrastructure built to actually hold up under production load.</p>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <section id="contact" class="section fade">
-      <h2>Get Free Consultation</h2>
+<section id="engage" style="border-top:1px solid var(--line);">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Ways to Engage</div>
+      <h2>Two ways to bring us in</h2>
+    </div>
+    <div class="grid-2 reveal-stagger reveal">
+      <div class="card stagger-item">
+        <div class="num">01</div>
+        <h3>Staff Augmentation</h3>
+        <p>Vetted engineers who plug into your existing team and sprint cadence — no ramp-up theater, no bench-warming.</p>
+      </div>
+      <div class="card stagger-item">
+        <div class="num">02</div>
+        <h3>Dev Project Delivery</h3>
+        <p>We take a project from the market brief through to a shipped, maintained product — end to end, one accountable team.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <p style="color: #94a3b8; margin-bottom: 30px">
-        Looking for a website, custom software, or AI automation solution? Tell
-        us about your project and we'll get back to you within 24 hours.
-      </p>
+<section id="products" style="border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="container" style="text-align:center;">
+    <div class="facet-rule reveal" style="margin-bottom:26px;">
+      <span class="line"></span><span class="facet"></span><span class="line"></span>
+    </div>
+    <div class="eyebrow" style="justify-content:center;"><span></span>Our Product — Launching Soon</div>
+    <h2 class="reveal" style="max-width:680px; margin-left:auto; margin-right:auto;">
+      Building AI-native products on AWS-native infrastructure
+    </h2>
+    <p class="reveal" style="max-width:600px; margin:0 auto;">
+      We're building business-centric products that pair intelligent AI automation with
+      scalable, cost-sane architecture on AWS — so the product is as solid underneath as it is smart on top.
+    </p>
+  </div>
+</section>
 
-      <form
-        class="contact-form"
-        action="https://api.web3forms.com/submit"
-        method="POST"
-      >
-        <input
-          type="hidden"
-          name="access_key"
-          value="27ba9788-5988-4a0d-a5ea-539dcc778cc7"
-        />
+<section id="why">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Why AlgoCubic</div>
+      <h2>Built by engineers, not a sales floor</h2>
+    </div>
+    <div class="grid-3 reveal-stagger reveal">
+      <div class="card stagger-item">
+        <h3>Built for Scale &amp; Speed</h3>
+        <p>Architecture decisions are made assuming you'll outgrow today's traffic, not just survive the demo.</p>
+      </div>
+      <div class="card stagger-item">
+        <h3>AWS &amp; AI, Both Deep</h3>
+        <p>We don't bolt AI onto someone else's infrastructure or treat cloud as an afterthought — both are core disciplines here, handled by engineers who own each end to end.</p>
+      </div>
+      <div class="card stagger-item">
+        <h3>Real Business Impact</h3>
+        <p>We measure success in shipped features and resolved bottlenecks, not story points burned.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <input
-          type="hidden"
-          name="redirect"
-          value="https://algocubic.com/thank-you.html"
-        />
-
-        <input type="text" name="name" placeholder="Full Name" required />
-
-        <input type="email" name="email" placeholder="Email Address" required />
-
-        <input type="tel" name="phone" placeholder="Phone Number" required />
-
-        <select name="service">
-          <option value="">Select Service</option>
+<section id="contact">
+  <div class="container">
+    <div class="cta-panel reveal">
+      <div class="eyebrow">Get Free Consultation</div>
+      <h2 style="max-width:520px;">Looking for a website, custom software, or AI automation solution?</h2>
+      <p style="max-width:520px;">Tell us about your project and we'll get back to you within 24 hours.</p>
+      <form class="form-grid" onsubmit="event.preventDefault(); alert('Thanks — we will be in touch within 24 hours.');">
+        <input type="text" placeholder="Your name" required>
+        <input type="email" placeholder="Email address" required>
+        <select class="full" required>
+          <option value="" disabled selected>Select Service</option>
+          <option>AWS Cloud &amp; DevOps</option>
           <option>Website Development</option>
           <option>Custom Software Development</option>
           <option>AI Workflow Automation</option>
           <option>AI Agents</option>
         </select>
-
-        <textarea
-          name="message"
-          rows="5"
-          placeholder="Tell us about your project"
-        ></textarea>
-
-        <button type="submit">Get Free Quote</button>
+        <textarea class="full" placeholder="Briefly describe your project"></textarea>
+        <button type="submit" class="btn btn-solid full" style="justify-content:center; cursor:pointer;">Get Free Quote</button>
       </form>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <footer>© 2026 AlgoCubic Pvt Ltd</footer>
+<footer>
+  <div class="container">
+    <p>© 2026 AlgoCubic Pvt Ltd</p>
+    <div class="footer-links">
+      <a href="whatwedo.html">What We Do</a>
+      <a href="products.html">Products</a>
+      <a href="careers.html">Careers</a>
+    </div>
+  </div>
+</footer>
 
-    <script>
-      // scroll animation
-      const fades = document.querySelectorAll(".fade");
-      window.addEventListener("scroll", () => {
-        fades.forEach((el) => {
-          const top = el.getBoundingClientRect().top;
-          if (top < window.innerHeight - 100) {
-            el.classList.add("show");
-          }
-        });
-      });
-
-      // animated background
-      const canvas = document.getElementById("bg");
-      const ctx = canvas.getContext("2d");
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-
-      let particles = [];
-
-      for (let i = 0; i < 80; i++) {
-        particles.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 0.5,
-          vy: (Math.random() - 0.5) * 0.5,
-        });
-      }
-
-      function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        particles.forEach((p) => {
-          p.x += p.vx;
-          p.y += p.vy;
-
-          if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-          if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
-          ctx.fillStyle = "#00d4ff";
-          ctx.fill();
-        });
-
-        requestAnimationFrame(animate);
-      }
-
-      animate();
-    </script>
-  </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="assets/js/hero-cube.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
 </html>
