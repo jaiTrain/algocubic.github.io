@@ -1,4 +1,4 @@
-// ============ Nav: scroll state + mobile toggle ============
+// ============ Nav: scroll state + mobile toggle =============
 const nav = document.querySelector('.site-nav');
 const navLinks = document.querySelector('.nav-links');
 const navToggle = document.querySelector('.nav-toggle');
